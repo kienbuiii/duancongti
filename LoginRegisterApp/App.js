@@ -6,6 +6,9 @@ import VerificationCodeScreen from './src/screens/VerificationCodeScreen';
 import NewPasswordScreen from './src/screens/NewPasswordScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
+import ConfirmPassScreen from './src/screens/ConfirmPassScreen';
+import DropDownPickerScreen from './src/screens/DropDownPickerScreen';
+import OderProductScreen from './src/screens/OderProductScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +21,8 @@ export default function App() {
         <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="DropDownPicker" component={DropDownPickerScreen} />
+        <Stack.Screen name="OderProduct" component={OderProductScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
