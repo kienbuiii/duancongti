@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity,StyleSheet,Image,ScrollView } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './LoginScreen';
+
 export default function RegisterScreen() {
   const navigation = useNavigation();
   return (
