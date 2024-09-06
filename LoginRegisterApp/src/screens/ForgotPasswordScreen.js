@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
 import NewPasswordScreen from './NewPasswordScreen';
+import ConfirmPassScreen from './ConfirmPassScreen';
 export default function ForgotPasswordScreen() {
   const navigation = useNavigation();
   return (

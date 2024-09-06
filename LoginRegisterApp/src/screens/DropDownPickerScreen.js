@@ -33,7 +33,7 @@ export default function DropDownPickerScreen() {
            
             </View>
            
-            <DropDownPicker
+            <
                 open={open}
                 value={value}
                 items={items}

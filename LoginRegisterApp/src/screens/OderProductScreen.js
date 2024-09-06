@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Image, ScrollView,Dimensions  } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import ListOderScreen from './ListOderScreen';
+const { width, height } = Dimensions.get('window');
 export default function OderProductScreen() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
@@ -47,7 +48,7 @@ export default function OderProductScreen() {
                     placeholder={"Đầu vào số"}
                     style={styles.input2} keyboardType="numeric"
                 />
-                <DropDownPicker style={styles.input2}
+                <DropDownPicker style={styles.input3}
                   maxHeight={150}
                  
                     open={open}
@@ -68,11 +69,11 @@ export default function OderProductScreen() {
                 placeholder={""}
                 style={styles.inputnx}
             />
-            <TouchableOpacity style={styles.buttonluu}>
-                <Text style={styles.textluu}>
-                    {"Lưu vào danh sách đặt hàng"}
-                </Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonluu} onPress={() => navigation.navigate('ListOder')}>
+    <Text style={styles.textluu}>
+        {"Lưu vào danh sách đặt hàng"}
+    </Text>
+</TouchableOpacity>
             <TouchableOpacity style={styles.buttondone}>
                 <Text style={styles.textdone}>
                     {"Đơn hàng đã kết thúc"}
@@ -84,110 +85,111 @@ export default function OderProductScreen() {
 const styles = StyleSheet.create({
     text: {
         color: "#000000",
-        fontSize: 22,
+        fontSize: width * 0.05,  // Giảm cỡ chữ
         fontWeight: "bold",
     },
     text1: {
         color: "#000000",
-        fontSize: 20,
-        marginBottom: 3,
-        marginLeft: 35,
-        margintop: 35,
+        fontSize: width * 0.04,  // Giảm cỡ chữ
+        marginBottom: height * 0.015, 
+        marginLeft: width * 0.07,  
+        marginTop: height * 0.02,
     },
     text2: {
         color: "#000000",
-        fontSize: 20,
-        marginBottom: 3,
-        // marginLeft: 35,
-        paddingTop: 10,
-        flexDirection: 'row',  // Sắp xếp các phần tử theo hàng ngang
-        justifyContent: 'space-between',  // Tùy chọn: Căn giữa các phần tử hoặc tạo khoảng cách
-        alignItems: 'center',  // Căn các phần tử theo chiều dọc
-        marginRight: 30,
+        fontSize: width * 0.04, 
+        marginBottom: height * 0.01,  
+        paddingTop: height * 0.01, 
+        flexDirection: 'row',  
+        justifyContent: 'space-between',  
+        alignItems: 'center',  
+        marginRight: width * 0.06,  
     },
     input: {
         color: "#1D1B20",
-        fontSize: 16,
-        marginBottom: 19,
-        marginHorizontal: 23,
+        fontSize: width * 0.035,  
+        marginBottom: height * 0.015, 
+        marginHorizontal: width * 0.04,  
         borderColor: "#79747E",
         borderRadius: 4,
         borderWidth: 1,
-        paddingVertical: 20,
-        paddingHorizontal: 17,
-
-    },
-    text3: {
-        color: "#000000",
-        fontSize: 20,
-    },
-    text4: {
-        color: "#000000",
-        fontSize: 20,
+        paddingVertical: height * 0.02,  
+        paddingHorizontal: width * 0.035,  
     },
     input2: {
         color: "#1D1B20",
-        fontSize: 16,
-        marginLeft: 22,
-        width: 169,
+        fontSize: width * 0.035,  
+        marginLeft: width * 0.04,  
+        width: 160,  
+        height:    50,  
         borderColor: "#79747E",
         borderRadius: 4,
         borderWidth: 1,
-        paddingVertical: 15,
-        paddingHorizontal: 19,
-
+        paddingVertical: height * 0.015,  
+        paddingHorizontal: width * 0.04,  
+        marginLeft:20
+    },
+    input3: {
+        color: "#1D1B20",
+        fontSize: width * 0.035,  
+        marginLeft: width * 0.04,  
+        width: 160,  
+        height:    50,  
+        borderColor: "#79747E",
+        borderRadius: 4,
+        borderWidth: 1,
+        paddingVertical: height * 0.015,  
+        paddingHorizontal: width * 0.04,  
+        marginLeft:25
     },
     textnx: {
         color: "#000000",
-        fontSize: 20,
-        marginBottom: 4,
-        marginLeft: 32,
-        marginTop: 130
+        fontSize: width * 0.045,  
+        marginBottom: height * 0.008, 
+        marginLeft: width * 0.06,  
+        marginTop: height * 0.15,  
     },
     inputnx: {
         color: "#1D1B20",
-        fontSize: 16,
-        marginBottom: 19,
-        marginHorizontal: 23,
+        fontSize: width * 0.035,  
+        marginBottom: height * 0.015,  
+        marginHorizontal: width * 0.04,  
         borderColor: "#79747E",
         borderRadius: 4,
         borderWidth: 1,
-        paddingVertical: 40,
-        paddingHorizontal: 17,
-
-    }, buttonluu: {
-        width: 204,
-        height: 43,
+        paddingVertical: height * 0.04,  
+        paddingHorizontal: width * 0.035,  
+    },
+    buttonluu: {
+        width: width * 0.50,  
+        height: height * 0.06,  
         alignItems: "center",
         backgroundColor: "#182EF3",
         borderRadius: 20,
-        paddingVertical: 10,
-        marginBottom: 11,
-        marginHorizontal: 90,
+        paddingVertical: height * 0.012,  
+        marginBottom: height * 0.01,  
+        marginHorizontal: width * 0.2, 
+        marginLeft:100 
     },
     textluu: {
         color: "#FFFFFF",
-        fontSize: 14,
+        fontSize: width * 0.035,  
         fontWeight: "bold",
-    }
-    ,
+    },
     buttondone: {
-        width: 204,
-        height: 43,
+        width: width * 0.50,  
+        
+        height: height * 0.06,  
         alignItems: "center",
         backgroundColor: "#182EF3",
         borderRadius: 20,
-        paddingVertical: 10,
-
-        marginHorizontal: 90,
+        paddingVertical: height * 0.012,  
+        marginHorizontal: width * 0.2,  
+        marginLeft:100
     },
     textdone: {
         color: "#FFFFFF",
-        fontSize: 14,
+        fontSize: width * 0.035,  
         fontWeight: "bold",
     },
-    itemStyle: {
-        maxWidth: '10%', // Chiều rộng của mỗi item
-        // ... các kiểu dáng khác cho item
-      },
 });
