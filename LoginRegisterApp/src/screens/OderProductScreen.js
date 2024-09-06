@@ -5,6 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListOderScreen from './ListOderScreen';
 const { width, height } = Dimensions.get('window');
+
 export default function OderProductScreen() {
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function OderProductScreen() {
         { label: 'đi chợ 6', value: '6' },
         { label: 'đi chợ 7', value: '7' }
     ]);
+
     return (
         <View>
             <Text style={styles.text}>

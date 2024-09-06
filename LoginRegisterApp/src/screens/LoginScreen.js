@@ -1,25 +1,22 @@
 import React from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity,StyleSheet,Image  } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import RegisterScreen from './RegisterScreen';
-import ForgotPasswordScreen from './ForgotPasswordScreen';
-import DropDownPickerScreen from './DropDownPickerScreen';
-
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import RegisterScreen from './RegisterScreen';
 export default function LoginScreen() {
   const navigation = useNavigation();
   return (
     <View>
-     <Image source={require('../../assets/Logo ĐCM.png')} style={styles.logo} />
+     <Image source={require('../../assets/Logo.png')} style={styles.logo} />
       <Text  style={styles.textdangnhap}>Đăng nhập đặt hàng</Text>
       <Text style={styles.textID}>{"ID"}</Text>
       <TextInput style={styles.box} placeholder="" />
       <Text style={styles.textID}>{"Mật khẩu"}</Text>
       <TextInput style={styles.box} placeholder="" secureTextEntry />
-      <TouchableOpacity  onPress={() => navigation.navigate('ForgotPassword')}>
+      <TouchableOpacity>
         <Text style={styles.textqmk}>Quên mật khẩu?</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('DropDownPicker')}>
+      <TouchableOpacity style={styles.button}>
 	    <Text style={styles.text}>{"Đăng nhập"}</Text>
       </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate('Register')}>
