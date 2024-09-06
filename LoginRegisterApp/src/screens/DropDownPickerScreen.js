@@ -24,7 +24,7 @@ export default function DropDownPickerScreen() {
                 <Text style={styles.text}>Tên người dùng ứng dụng</Text>
             </View>
            
-            <
+            <DropDownPicker>
                 open={open}
                 value={value}
                 items={items}
@@ -33,7 +33,7 @@ export default function DropDownPickerScreen() {
                 setItems={setItems}
                 containerStyle={styles.dropdownContainer}
                 style={styles.dropdown}
-            />
+                </DropDownPicker>
           
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OderProduct')}>
                 <Text style={styles.buttonText}>Đến tiếp theo</Text>
