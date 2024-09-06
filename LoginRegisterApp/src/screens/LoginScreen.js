@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity,StyleSheet,Image  } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import RegisterScreen from './RegisterScreen';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import RegisterScreen from './RegisterScreen';
 export default function LoginScreen() {
   const navigation = useNavigation();
   return (
