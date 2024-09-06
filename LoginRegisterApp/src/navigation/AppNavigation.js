@@ -13,6 +13,7 @@ import NotificationScreen from '../screens/NotificationScreen';
 import OrderListScreen from '../screens/OrderListScreen';
 import OrderDetailScreen from '../screens/OrderDetailScreen';
 import SupportCustomerScreen from '../screens/SupportCustomerScreen';
+import ListOderScreen from '../screens/ListOderScreen';
 const Stack = createStackNavigator();
 
 const AppNavigation = () => {
@@ -31,6 +32,8 @@ const AppNavigation = () => {
         <Stack.Screen name="OrderListCode" component={OrderListScreen} />
         <Stack.Screen name="OderDetailCode" component={OrderDetailScreen} />
         <Stack.Screen name="SupportCustomerScreenCode" component={SupportCustomerScreen} />
+        <Stack.Screen name="ConfirmPass" component={ConfirmPassScreen} />
+        <Stack.Screen name="ListOder" component={ListOderScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
