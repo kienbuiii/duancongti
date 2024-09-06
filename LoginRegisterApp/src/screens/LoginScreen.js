@@ -10,7 +10,7 @@ export default function LoginScreen() {
   const navigation = useNavigation();
   return (
     <View>
-     <Image source={require('../../assets/Logo ĐCM.png')} style={styles.logo} />
+     <Image source={require('../../assets/Logo.png')} style={styles.logo} />
       <Text  style={styles.textdangnhap}>Đăng nhập đặt hàng</Text>
       <Text style={styles.textID}>{"ID"}</Text>
       <TextInput style={styles.box} placeholder="" />

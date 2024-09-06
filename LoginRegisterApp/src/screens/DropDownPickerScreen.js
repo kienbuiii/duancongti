@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useNavigation } from '@react-navigation/native';
-import OderProductScreen from './OderProductScreen';  
-
 
 export default function DropDownPickerScreen() {
     const navigation = useNavigation();
@@ -20,17 +18,10 @@ export default function DropDownPickerScreen() {
     ]);
 
     return (
-
-        <View>
-            <View style={styles.hangnga}>
-                <Text style={styles.text}>
-                {"Khách hàng"}
-            </Text>
-            <Text style={styles.text}>
-                {"Tên người dùng ứng dụng"}
-            </Text>
-           
-           
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Text style={styles.text}>Khách hàng</Text>
+                <Text style={styles.text}>Tên người dùng ứng dụng</Text>
             </View>
            
             <DropDownPicker
@@ -40,49 +31,57 @@ export default function DropDownPickerScreen() {
                 setOpen={setOpen}
                 setValue={setValue}
                 setItems={setItems}
+                containerStyle={styles.dropdownContainer}
+                style={styles.dropdown}
             />
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OderProduct')}>
-	    <Text style={styles.text2}>{"Đến tiếp theo"}</Text>
-      </TouchableOpacity>
+          
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OderProduct')}>
+                <Text style={styles.buttonText}>Đến tiếp theo</Text>
+            </TouchableOpacity>
         </View>
     );
 }
+
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 16,
+        justifyContent: 'flex-start',  // Align items to the top
+        backgroundColor: '#fff',
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 16,
+        marginTop: 20,  // Space from the top
+    },
     text: {
-        color: "#55555",
-        fontSize: 22,
+        color: "#555555",
+        fontSize: width * 0.05,  // Responsive font size
         fontWeight: "bold",
         textAlign: "center",
-        marginTop: 5,
-        marginRight: 2,
-        width: 206,
+        flex: 1,
     },
-    text1: {
-        color: "#FFFFFF",
-        fontSize: 14,
-        fontWeight: "bold",
-
+    dropdownContainer: {
+        marginBottom: 24,
+    },
+    dropdown: {
+        borderColor: '#ccc',
+        height: 50,
     },
     button: {
-        alignItems: "center",
         backgroundColor: "#182EF3",
         borderRadius: 20,
         paddingVertical: 16,
-        marginHorizontal: 113,
-        marginTop: 300,
+        alignItems: "center",
+        marginHorizontal: width * 0.2, // Responsive horizontal margin
+        marginVertical: 20 ,  // Space from the dropdown picker
     },
-    hangnga: {
-        flexDirection: 'row',  // Sắp xếp các phần tử theo hàng ngang
-        justifyContent: 'space-between',  // Tùy chọn: Căn giữa các phần tử hoặc tạo khoảng cách
-        alignItems: 'center',  // Căn các phần tử theo chiều dọc
-        marginRight:30,
+    buttonText: {
+        color: "#FFFFFF",
+        fontSize: width * 0.04,  // Responsive font size
+        fontWeight: "bold",
     },
-    logo:{
-        width: 30,
-		height: 16,
-  },text2:{
-    color: "#FFFFFF",
-    fontSize: 14,
-    fontWeight: "bold",
-  }
 });

@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity , StyleSheet} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './LoginScreen';
+// import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
 import NewPasswordScreen from './NewPasswordScreen';
+import ConfirmPassScreen from './ConfirmPassScreen';
 export default function ForgotPasswordScreen() {
   const navigation = useNavigation();
   return (
