@@ -23,8 +23,8 @@ export default function DropDownPickerScreen() {
                 <Text style={styles.text}>Khách hàng</Text>
                 <Text style={styles.text}>Tên người dùng ứng dụng</Text>
             </View>
-           
-            <DropDownPicker>
+
+            <DropDownPicker
                 open={open}
                 value={value}
                 items={items}
@@ -33,8 +33,9 @@ export default function DropDownPickerScreen() {
                 setItems={setItems}
                 containerStyle={styles.dropdownContainer}
                 style={styles.dropdown}
-                </DropDownPicker>
-          
+            />
+
+
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OderProduct')}>
                 <Text style={styles.buttonText}>Đến tiếp theo</Text>
             </TouchableOpacity>
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         alignItems: "center",
         marginHorizontal: width * 0.2, // Responsive horizontal margin
-        marginVertical: 20 ,  // Space from the dropdown picker
+        marginVertical: 20,  // Space from the dropdown picker
     },
     buttonText: {
         color: "#FFFFFF",
