@@ -3,9 +3,6 @@ import { View, Text, TextInput, Button, TouchableOpacity,StyleSheet,Image  } fro
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RegisterScreen from './RegisterScreen';
-import ForgotPasswordScreen from './ForgotPasswordScreen';
-import DropDownPickerScreen from './DropDownPickerScreen';
-
 export default function LoginScreen() {
   const navigation = useNavigation();
   return (
@@ -16,10 +13,10 @@ export default function LoginScreen() {
       <TextInput style={styles.box} placeholder="" />
       <Text style={styles.textID}>{"Mật khẩu"}</Text>
       <TextInput style={styles.box} placeholder="" secureTextEntry />
-      <TouchableOpacity  onPress={() => navigation.navigate('ForgotPassword')}>
+      <TouchableOpacity>
         <Text style={styles.textqmk}>Quên mật khẩu?</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('DropDownPicker')}>
+      <TouchableOpacity style={styles.button}>
 	    <Text style={styles.text}>{"Đăng nhập"}</Text>
       </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate('Register')}>
