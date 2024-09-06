@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 export default function OderProductScreen() {
     const navigation = useNavigation();
@@ -17,177 +16,118 @@ export default function OderProductScreen() {
         { label: 'đi chợ 6', value: '6' },
         { label: 'đi chợ 7', value: '7' }
     ]);
+
     return (
-        <View>
-            <Text style={styles.text}>
-                {"Tên đơn hàng"}
-            </Text>
+        <View style={styles.container}>
+            <Text style={styles.titleText}>Tên đơn hàng</Text>
 
-            <View style={styles.text2}>
-                <Text style={styles.text1}>
-                    {"＊Tên sản phẩm"}
-                </Text>
+            <View style={styles.row}>
+                <Text style={styles.labelText}>＊Tên sản phẩm</Text>
             </View>
-            <TextInput
 
-                placeholder={"Đầu vào chính của sản phẩm"}
+            <TextInput
+                placeholder="Đầu vào chính của sản phẩm"
                 style={styles.input}
             />
-            <View style={styles.text2}>
-                <Text style={styles.text1}>
-                    {"＊Số lượng"}
-                </Text>
-                <Text style={styles.text1}>
-                    {"Có khoảng 12"}
-                </Text>
-            </View>
-            <View style={styles.text2}>
-                <TextInput
 
-                    placeholder={"Đầu vào số"}
-                    style={styles.input2} keyboardType="numeric"
+            <View style={styles.row}>
+                <Text style={styles.labelText}>＊Số lượng</Text>
+                <Text style={styles.labelText}>Có khoảng 12</Text>
+            </View>
+
+            <View style={styles.row}>
+                <TextInput
+                    placeholder="Đầu vào số"
+                    style={[styles.input, styles.inputHalf]}
+                    keyboardType="numeric"
                 />
-                <DropDownPicker style={styles.input2}
-                  maxHeight={150}
-                 
+                <DropDownPicker
                     open={open}
                     value={value}
                     items={items}
                     setOpen={setOpen}
                     setValue={setValue}
                     setItems={setItems}
-                    itemStyle={styles.itemStyle}
-
+                    style={[styles.input, styles.inputHalf]}
+                    maxHeight={150}
                 />
             </View>
-            <Text style={styles.textnx}>
-                {"*Nhận xét"}
-            </Text>
-            <TextInput
+            <View style={styles.cach}>
+                <Text style={styles.labelText}>*Nhận xét</Text>
 
-                placeholder={""}
-                style={styles.inputnx}
-            />
-            <TouchableOpacity style={styles.buttonluu}>
-                <Text style={styles.textluu}>
-                    {"Lưu vào danh sách đặt hàng"}
-                </Text>
+                <TextInput
+                    placeholder=""
+                    style={[styles.input, styles.inputLarge]}
+                    multiline={true}
+                />
+            </View>
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Lưu vào danh sách đặt hàng</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttondone}>
-                <Text style={styles.textdone}>
-                    {"Đơn hàng đã kết thúc"}
-                </Text>
+
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Đơn hàng đã kết thúc</Text>
             </TouchableOpacity>
         </View>
     );
 }
+
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
-    text: {
+    container: {
+        flex: 1,
+        padding: 16,
+        backgroundColor: '#fff',
+    },
+    titleText: {
         color: "#000000",
-        fontSize: 22,
+        fontSize: width * 0.06, // Responsive font size
         fontWeight: "bold",
+        marginBottom: 16,
     },
-    text1: {
-        color: "#000000",
-        fontSize: 20,
-        marginBottom: 3,
-        marginLeft: 35,
-        margintop: 35,
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
     },
-    text2: {
+    labelText: {
         color: "#000000",
-        fontSize: 20,
+        fontSize: width * 0.05, // Responsive font size
         marginBottom: 3,
-        // marginLeft: 35,
-        paddingTop: 10,
-        flexDirection: 'row',  // Sắp xếp các phần tử theo hàng ngang
-        justifyContent: 'space-between',  // Tùy chọn: Căn giữa các phần tử hoặc tạo khoảng cách
-        alignItems: 'center',  // Căn các phần tử theo chiều dọc
-        marginRight: 30,
     },
     input: {
         color: "#1D1B20",
-        fontSize: 16,
-        marginBottom: 19,
-        marginHorizontal: 23,
+        fontSize: width * 0.04, // Responsive font size
         borderColor: "#79747E",
         borderRadius: 4,
         borderWidth: 1,
-        paddingVertical: 20,
-        paddingHorizontal: 17,
-
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        marginBottom: 16,
+        width: '100%',
     },
-    text3: {
-        color: "#000000",
-        fontSize: 20,
+    inputHalf: {
+        width: '48%', // Half width for inputs in row
     },
-    text4: {
-        color: "#000000",
-        fontSize: 20,
+    inputLarge: {
+        height: 100, // Larger input for comments
     },
-    input2: {
-        color: "#1D1B20",
-        fontSize: 16,
-        marginLeft: 22,
-        width: 169,
-        borderColor: "#79747E",
-        borderRadius: 4,
-        borderWidth: 1,
-        paddingVertical: 15,
-        paddingHorizontal: 19,
-
-    },
-    textnx: {
-        color: "#000000",
-        fontSize: 20,
-        marginBottom: 4,
-        marginLeft: 32,
-        marginTop: 130
-    },
-    inputnx: {
-        color: "#1D1B20",
-        fontSize: 16,
-        marginBottom: 19,
-        marginHorizontal: 23,
-        borderColor: "#79747E",
-        borderRadius: 4,
-        borderWidth: 1,
-        paddingVertical: 40,
-        paddingHorizontal: 17,
-
-    }, buttonluu: {
-        width: 204,
-        height: 43,
-        alignItems: "center",
+    button: {
         backgroundColor: "#182EF3",
         borderRadius: 20,
-        paddingVertical: 10,
-        marginBottom: 11,
-        marginHorizontal: 90,
-    },
-    textluu: {
-        color: "#FFFFFF",
-        fontSize: 14,
-        fontWeight: "bold",
-    }
-    ,
-    buttondone: {
-        width: 204,
-        height: 43,
+        paddingVertical: 12,
         alignItems: "center",
-        backgroundColor: "#182EF3",
-        borderRadius: 20,
-        paddingVertical: 10,
-
-        marginHorizontal: 90,
+        marginBottom: 16,
+        marginHorizontal: width * 0.2, // Responsive horizontal margin
     },
-    textdone: {
+    buttonText: {
         color: "#FFFFFF",
-        fontSize: 14,
+        fontSize: width * 0.045, // Responsive font size
         fontWeight: "bold",
     },
-    itemStyle: {
-        maxWidth: '10%', // Chiều rộng của mỗi item
-        // ... các kiểu dáng khác cho item
-      },
+    cach:{
+        // marginTop:80,
+    },
 });

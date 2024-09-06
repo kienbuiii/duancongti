@@ -15,6 +15,9 @@ import SupportCustomerScreen from './src/screens/SupportCustomerScreen';
 const Stack = createStackNavigator();
 
 export default function App() {
+import AppNavigation from './src/navigation/AppNavigation'; 
+
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SupportCustomerScreenCode">
@@ -31,3 +34,9 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+    <AppNavigation />
+  );
+};
+
+export default App;
