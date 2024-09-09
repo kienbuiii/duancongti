@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 
 import FaqScreen from '../screens/FaqScreen';
-import SupportChanelScreeen from '../screens/SupportChanelScreeen';
+import SupportChanelScreeen from './SupportChanelScreen';
 // Tạo các Tab Component
 function FaqScreenComponent() {
 	return (

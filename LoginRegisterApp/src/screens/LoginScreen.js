@@ -18,6 +18,7 @@ export default function LoginScreen() {
       </TouchableOpacity >
       <TouchableOpacity style={styles.button} >
 	    <Text style={styles.text}>{"Đăng nhập"}</Text>
+
       </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate('Register')}>
       <Text style={styles.textdktk}>Bạn đã có tài khoản? Đăng ký</Text>
