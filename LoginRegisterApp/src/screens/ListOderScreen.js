@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import DropDownPicker from './DropDownPickerScreen';
 // Get screen dimensions
 const { width, height } = Dimensions.get('window');
 
@@ -26,7 +26,7 @@ export default function ListOrderScreen() {
 
             <ScrollView style={styles.scrollView}>
                 <View style={styles.viewallrow}>
-                    {[...Array(10)].map((_, index) => (
+                    {[...Array(7)].map((_, index) => (
                         <View key={index} style={styles.row}>
                             <View style={styles.row2}>
                                 <View style={styles.view}>
@@ -57,12 +57,12 @@ export default function ListOrderScreen() {
             </ScrollView>
 
             <View style={styles.viewbutton}>
-                <TouchableOpacity style={styles.viewodcf}>
+                <TouchableOpacity style={styles.viewodcf} onPress={() => navigation.navigate('OderSucess')}>
                     <Text style={styles.textodcf}>
                         {"Đơn hàng đã được xác nhận"}
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.viewodcf2}>
+                <TouchableOpacity style={styles.viewodcf} onPress={() => navigation.navigate('OderSucess')}>
                     <Text style={styles.textodcf}>
                         {"Gửi đơn hàng"}
                     </Text>
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         marginBottom: height * 0.015,
         marginHorizontal: width * 0.3,
         marginTop: height * 0.1,
-        marginTop:100
+        marginTop:30
     },
     viewodcf2: {
         width: width * 0.55,
@@ -189,11 +189,12 @@ const styles = StyleSheet.create({
     },
     viewbutton: {
         marginLeft: -30,
+        marginTop: 2,
        
     },
     scrollView: {
         flex: 1,
-        
+        maxHeight:300
     },
     buttonText:{
         color:"black",

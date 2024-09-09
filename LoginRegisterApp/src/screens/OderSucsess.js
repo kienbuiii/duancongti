@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
+import { View, Text, TextInput, Button, TouchableOpacity,StyleSheet,Image ,Dimensions,ScrollView } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DropDownPicker from './DropDownPickerScreen';
 const { width, height } = Dimensions.get('window');
 
 export default function LoginScreen() {
     const navigation = useNavigation();
+   
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>
@@ -60,10 +62,13 @@ export default function LoginScreen() {
                 </View>
             </ScrollView>
 
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Lên đầu trang</Text>
-            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('DropDownPicker')}>
+	    <Text style={styles.buttonText}>{"Lên trang đầu"}</Text>
+
+      </TouchableOpacity>
+            
         </View>
+        
     );
 }
 
