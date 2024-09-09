@@ -13,10 +13,10 @@ export default function LoginScreen() {
       <TextInput style={styles.box} placeholder="" />
       <Text style={styles.textID}>{"Mật khẩu"}</Text>
       <TextInput style={styles.box} placeholder="" secureTextEntry />
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
         <Text style={styles.textqmk}>Quên mật khẩu?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      </TouchableOpacity >
+      <TouchableOpacity style={styles.button} >
 	    <Text style={styles.text}>{"Đăng nhập"}</Text>
       </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate('Register')}>
