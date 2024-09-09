@@ -14,12 +14,14 @@ import OrderListScreen from '../screens/OrderListScreen';
 import OrderDetailScreen from '../screens/OrderDetailScreen';
 import SupportCustomerScreen from '../screens/SupportCustomerScreen';
 import ListOderScreen from '../screens/ListOderScreen';
+import OderSucsess from '../screens/OderSucsess';
+
 const Stack = createStackNavigator();
 
 const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="DropDownPicker">
+      <Stack.Navigator initialRouteName="OderSucess">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
@@ -33,6 +35,7 @@ const AppNavigation = () => {
         <Stack.Screen name="OderDetailCode" component={OrderDetailScreen} />
         <Stack.Screen name="SupportCustomerScreenCode" component={SupportCustomerScreen} />
         <Stack.Screen name="ListOder" component={ListOderScreen} />
+        <Stack.Screen name="OderSucess" component={OderSucsess} />
       </Stack.Navigator>
     </NavigationContainer>
   );
