@@ -14,6 +14,8 @@ import OrderListScreen from '../screens/OrderListScreen';
 import OrderDetailScreen from '../screens/OrderDetailScreen';
 import SupportCustomerScreen from '../screens/SupportCustomerScreen';
 import ListOderScreen from '../screens/ListOderScreen';
+import OderSucsess from '../screens/OderSucsess';
+
 import SupportChanelScreen from '../screens/SupportChanelScreen';
 import FaqScreen from '../screens/FaqScreen';
 const Stack = createStackNavigator();
@@ -37,6 +39,7 @@ const AppNavigation = () => {
         <Stack.Screen name="SupportChanelScreenCode" component={SupportChanelScreen} />
         <Stack.Screen name="SupportFaqScreenCode" component={FaqScreen} />
         <Stack.Screen name="ListOder" component={ListOderScreen} />
+        <Stack.Screen name="OderSucess" component={OderSucsess} />
       </Stack.Navigator>
     </NavigationContainer>
   );
