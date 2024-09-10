@@ -1,26 +1,32 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, TextInput, Button, TouchableOpacity,StyleSheet,Image ,Dimensions,ScrollView } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropDownPicker from './DropDownPickerScreen';
-// Get screen dimensions
 const { width, height } = Dimensions.get('window');
 
-export default function ListOrderScreen() {
+export default function LoginScreen() {
     const navigation = useNavigation();
-
+   
     return (
         <View style={styles.container}>
-            <Text style={styles.textf}>
-                {"Tên đơn hàng"}
+            <Text style={styles.titleText}>
+                {"[Nơi đặt hàng]"}
             </Text>
-            <View>
-                <Text style={styles.text1}>
-                    {"Danh sách đơn hàng ( chưa xác nhận)"}
-                </Text>
-            </View>
-            <View style={styles.viewday}>
-                <Text style={styles.textday}>
-                    {"8/7/2024"}
+
+            <Image
+                source={{ uri: "https://i.imgur.com/1tMFzp8.png" }}
+                resizeMode={"stretch"}
+                style={styles.image}
+            />
+
+            <Text style={styles.thankYouText}>
+                {"Cảm ơn bạn vì tất cả mọi thứ\nĐơn đặt hàng đã được gửi"}
+            </Text>
+
+            <View style={styles.dateView}>
+                <Text style={styles.dateText}>
+                    {"Ngày 8 tháng 7 năm 2024"}
                 </Text>
             </View>
 
@@ -56,59 +62,58 @@ export default function ListOrderScreen() {
                 </View>
             </ScrollView>
 
-            <View style={styles.viewbutton}>
-                <TouchableOpacity style={styles.viewodcf} onPress={() => navigation.navigate('OderSucess')}>
-                    <Text style={styles.textodcf}>
-                        {"Đơn hàng đã được xác nhận"}
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.viewodcf} onPress={() => navigation.navigate('OderSucess')}>
-                    <Text style={styles.textodcf}>
-                        {"Gửi đơn hàng"}
-                    </Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('DropDownPicker')}>
+	    <Text style={styles.buttonText}>{"Lên trang đầu"}</Text>
+
+      </TouchableOpacity>
+            
         </View>
+        
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        padding: 16,
+        backgroundColor: '#FFFFFF',
     },
-    textf: {
-        color: "#000000",
-        fontSize: 16,
+    titleText: {
+        color: "#000",
+        fontSize: 24,
         fontWeight: "bold",
-        marginLeft: 140,
+        textAlign: "center",
+        marginBottom: 16,
     },
-    text1: {
-        color: "#000000",
-        fontSize: width * 0.045,
-        marginBottom: height * 0.04,
-        marginLeft: width * 0.04,
-        marginTop: height * 0.04,
+    thankYouText: {
+        color: "#182EF3",
+        fontSize: 18,
+        textAlign: "center",
+        marginVertical: 12,
     },
-    viewday: {
-        borderColor: "#79747E",
-        borderRadius: 4,
-        borderWidth: 1,
-        paddingVertical: height * 0.03,
-        paddingLeft: width * 0.4,
-        paddingRight: width * 0.35,
-        marginBottom: height * 0.02,
-        marginHorizontal: width * 0.05,
+    image: {
+        width: 50,
+        height: 50,
+        alignSelf: 'center',
+        marginBottom: 12,
     },
-    textday: {
-        color: "#1D1B20",
-        fontSize: width * 0.03,
-          paddingLeft: 1,
-          paddingRight: 2,
+    dateView: {
+        backgroundColor: '#F1F1F1',
+        padding: 12,
+        borderRadius: 8,
+        alignItems: 'center',
+        marginBottom: 16,
     },
-    box: {
-        width: 1,
-        height: height * 0.05,
-        backgroundColor: "#B8B8B8",
+    dateText: {
+        fontSize: 16,
+        color: '#000',
+    },
+    scrollView: {
+        marginVertical: 16,
+        
+    },
+    tableContainer: {
+        paddingHorizontal: 8,
     },
     row: {
         flexDirection: "row",
@@ -116,10 +121,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginHorizontal: width * 0.06,
         marginLeft: 20,
-        maxHeight:300,
+        maxHeight:400,
     
     },
     row2: {
+        
         width: width * 0.80,
         flexDirection: "row",
         justifyContent: "space-between",
@@ -153,48 +159,33 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingVertical: height * 0.02,
         paddingHorizontal: width * 0.02,
+    
     },
-    textodcf: {
-        color: "#FFFFFF",
-        fontSize: width * 0.035,
-        fontWeight: "bold",
-    },
-    viewodcf: {
-        width: width * 0.55,
-        height: height * 0.06,
-        alignItems: "center",
-        backgroundColor: "#182EF3",
-        borderRadius: 20,
-        paddingVertical: height * 0.02,
-        marginBottom: height * 0.015,
-        marginHorizontal: width * 0.3,
-        marginTop: height * 0.1,
-        marginTop:30
-    },
-    viewodcf2: {
-        width: width * 0.55,
-        height: height * 0.06,
-        alignItems: "center",
-        backgroundColor: "#182EF3",
-        borderRadius: 20,
-        paddingVertical: height * 0.02,
-        marginBottom: height * 0.015,
-        marginHorizontal: width * 0.3,
-        
-    },
-    viewallrow: {
-        padding: 11,
-        marginLeft:-13,
-       
-    },
-    viewbutton: {
-        marginLeft: -30,
-        marginTop: 2,
-       
-    },
-    scrollView: {
+    cell: {
         flex: 1,
-        maxHeight:300
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#B8B8B8',
+    },
+    cellText: {
+        fontSize: 16,
+        color: '#000',
+    },
+    deleteText: {
+        color: '#FF0000',
+        fontWeight: 'bold',
+        marginLeft: 10,
+    },
+    button: {
+        backgroundColor: '#182EF3',
+        paddingVertical: 12,
+        alignItems: 'center',
+        borderRadius: 8,
+    },
+    buttonText: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     buttonText:{
         color:"black",

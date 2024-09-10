@@ -279,11 +279,14 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 22,
         fontWeight: "bold",
-        marginLeft: 120,
         marginTop: 15,
         marginBottom: 15,
+        alignSelf: "center",
 
     },
     
-
+    container: {
+        marginTop:'10%',
+        flex:1,
+    }
 });

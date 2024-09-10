@@ -10,7 +10,7 @@ export default function SupportChanelScreen() {
     return (
 
 
-        <ScrollView>
+        <ScrollView style={styles.background}>
 
             <TouchableOpacity style={styles.buttonRow}>
                 <Image
@@ -85,6 +85,9 @@ const styles = StyleSheet.create({
 		marginHorizontal: 34,
         marginTop: 34,
 	},
+    background: {
+		backgroundColor: "#FFFFFF",
+	},
 	image: {
 		width: 18,
 		height: 18,
@@ -97,4 +100,5 @@ const styles = StyleSheet.create({
 		flex: 1,
         
 	},
+    
 });

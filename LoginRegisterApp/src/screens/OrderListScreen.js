@@ -7,7 +7,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 export default function OrderListScreen() {
     return (
 
-        <View >
+        <View style={styles.container}>
             <Text style={styles.text1}>
                 {"Lịch sử đặt hàng"}
             </Text>
@@ -20,196 +20,192 @@ export default function OrderListScreen() {
                 <TextInput style={styles.text} placeholder="Vui lòng nhập mã đơn của bạn. ">
                 </TextInput>
             </View>
-            <ScrollView>
-                <View>
-                <TouchableOpacity>
-                <View style={styles.column}>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Mã đơn "}
-                        </Text>
-                        <Text style={styles.textcod}>
-                            {"IN000000011"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Ngày đặt :"}
-                        </Text>
-                        <Text style={styles.text3}>
-                            {"2024/07/14 15:03"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tổng tiền : "}
-                        </Text>
-                        <Text style={styles.textyen}>
-                            {"16,600 yen"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tình trạng : "}
-                        </Text>
-                        <Text style={styles.textPC}>
-                            {"Không có"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tên khách hàng :"}
-                        </Text>
-                        <Text style={styles.textuser}>
-                            {"Nguyễn văn  A"}
-                        </Text>
-                    </View>
+            <ScrollView >
+            
+                <View >
+                    <TouchableOpacity>
+                        <View style={styles.column}>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Mã đơn "}
+                                </Text>
+                                <Text style={styles.textcod}>
+                                    {"IN000000011"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Ngày đặt :"}
+                                </Text>
+                                <Text style={styles.text3}>
+                                    {"2024/07/14 15:03"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tổng tiền : "}
+                                </Text>
+                                <Text style={styles.textyen}>
+                                    {"16,600 yen"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tình trạng : "}
+                                </Text>
+                                <Text style={styles.textPC}>
+                                    {"Không có"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tên khách hàng :"}
+                                </Text>
+                                <Text style={styles.textuser}>
+                                    {"Nguyễn văn  A"}
+                                </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <View style={styles.column}>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Mã đơn "}
+                                </Text>
+                                <Text style={styles.textcod}>
+                                    {"IN000000011"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Ngày đặt :"}
+                                </Text>
+                                <Text style={styles.text3}>
+                                    {"2024/07/14 15:03"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tổng tiền : "}
+                                </Text>
+                                <Text style={styles.textyen}>
+                                    {"16,600 yen"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tình trạng : "}
+                                </Text>
+                                <Text style={styles.textPC}>
+                                    {"Không có"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tên khách hàng :"}
+                                </Text>
+                                <Text style={styles.textuser}>
+                                    {"Nguyễn văn  A"}
+                                </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <View style={styles.column}>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Mã đơn "}
+                                </Text>
+                                <Text style={styles.textcod}>
+                                    {"IN000000011"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Ngày đặt :"}
+                                </Text>
+                                <Text style={styles.text3}>
+                                    {"2024/07/14 15:03"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tổng tiền : "}
+                                </Text>
+                                <Text style={styles.textyen}>
+                                    {"16,600 yen"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tình trạng : "}
+                                </Text>
+                                <Text style={styles.textPC}>
+                                    {"Không có"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tên khách hàng :"}
+                                </Text>
+                                <Text style={styles.textuser}>
+                                    {"Nguyễn văn  A"}
+                                </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <View style={styles.column}>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Mã đơn "}
+                                </Text>
+                                <Text style={styles.textcod}>
+                                    {"IN000000011"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textcod1}>
+                                    {"Ngày đặt :"}
+                                </Text>
+                                <Text style={styles.text3}>
+                                    {"2024/07/14 15:03"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tổng tiền : "}
+                                </Text>
+                                <Text style={styles.textyen}>
+                                    {"16,600 yen"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tình trạng : "}
+                                </Text>
+                                <Text style={styles.textPC}>
+                                    {"Không có"}
+                                </Text>
+                            </View>
+                            <View style={styles.row0}>
+                                <Text style={styles.textpay}>
+                                    {"Tên khách hàng :"}
+                                </Text>
+                                <Text style={styles.textuser}>
+                                    {"Nguyễn văn  A"}
+                                </Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                  
+              
+
+
                 </View>
-                </TouchableOpacity>
-             
-                
-                </View><View>
-                <TouchableOpacity>
-                <View style={styles.column}>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Mã đơn "}
-                        </Text>
-                        <Text style={styles.textcod}>
-                            {"IN000000011"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Ngày đặt :"}
-                        </Text>
-                        <Text style={styles.text3}>
-                            {"2024/07/14 15:03"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tổng tiền : "}
-                        </Text>
-                        <Text style={styles.textyen}>
-                            {"16,600 yen"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tình trạng : "}
-                        </Text>
-                        <Text style={styles.textPC}>
-                            {"Không có"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tên khách hàng :"}
-                        </Text>
-                        <Text style={styles.textuser}>
-                            {"Nguyễn văn  A"}
-                        </Text>
-                    </View>
-                </View>
-                </TouchableOpacity>
-             
-                
-                </View><View>
-                <TouchableOpacity>
-                <View style={styles.column}>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Mã đơn "}
-                        </Text>
-                        <Text style={styles.textcod}>
-                            {"IN000000011"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Ngày đặt :"}
-                        </Text>
-                        <Text style={styles.text3}>
-                            {"2024/07/14 15:03"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tổng tiền : "}
-                        </Text>
-                        <Text style={styles.textyen}>
-                            {"16,600 yen"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tình trạng : "}
-                        </Text>
-                        <Text style={styles.textPC}>
-                            {"Không có"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tên khách hàng :"}
-                        </Text>
-                        <Text style={styles.textuser}>
-                            {"Nguyễn văn  A"}
-                        </Text>
-                    </View>
-                </View>
-                </TouchableOpacity>
-             
-                
-                </View><View>
-                <TouchableOpacity>
-                <View style={styles.column}>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Mã đơn "}
-                        </Text>
-                        <Text style={styles.textcod}>
-                            {"IN000000011"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textcod1}>
-                            {"Ngày đặt :"}
-                        </Text>
-                        <Text style={styles.text3}>
-                            {"2024/07/14 15:03"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tổng tiền : "}
-                        </Text>
-                        <Text style={styles.textyen}>
-                            {"16,600 yen"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tình trạng : "}
-                        </Text>
-                        <Text style={styles.textPC}>
-                            {"Không có"}
-                        </Text>
-                    </View>
-                    <View style={styles.row0}>
-                        <Text style={styles.textpay}>
-                            {"Tên khách hàng :"}
-                        </Text>
-                        <Text style={styles.textuser}>
-                            {"Nguyễn văn  A"}
-                        </Text>
-                    </View>
-                </View>
-                </TouchableOpacity>
-             
-                
-                </View>
+               
             </ScrollView>
 
         </View>
@@ -220,9 +216,9 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 22,
         fontWeight: "bold",
-        marginLeft: 105,
-        marginTop: 10,
-        marginBottom:10
+        marginTop: '11%',
+        alignSelf: "center",
+        marginBottom: 10
     },
     image: {
         width: 18,
@@ -246,57 +242,62 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     column: {
-		backgroundColor: "#F9F9F9",
-		borderColor: "#182EF3",
-		borderRadius: 12,
-		borderWidth: 1,
-		paddingVertical: 12,
-		paddingHorizontal: 16,
-		marginBottom: 12,
-		marginHorizontal: 14,
-		shadowColor: "#00000026",
-		shadowOpacity: 0.2,
-		shadowOffset: {
-		    width: 0,
-		    height: 2
-		},
-		shadowRadius: 4,
-		elevation: 4,
-	},
+        backgroundColor: "#F9F9F9",
+        borderColor: "#182EF3",
+        borderRadius: 12,
+        borderWidth: 1,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        marginBottom: 12,
+        marginHorizontal: 14,
+        shadowColor: "#00000026",
+        shadowOpacity: 0.2,
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowRadius: 4,
+        elevation: 4,
+    },
     row0: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginBottom: 14,
-	},
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 14,
+    },
     textcod: {
-		color: "#0671E0",
-		fontSize: 16,
+        color: "#0671E0",
+        fontSize: 16,
         marginLeft: 40,
-	},
+    },
     textcod1: {
-		color: "#262626",
-		fontSize: 16,
-		marginRight: 90,
-        fontWeight: "bold",
-	},
-    textpay: {
-		color: "#262626",
-		fontSize: 16,
-		fontWeight: "bold",
-	},
-    textyen: {
-		color: "#262626",
-		fontSize: 16,
-        marginLeft: 130,
-	},
-    textuser: {
-		color: "#262626",
-		fontSize: 16,
-        marginLeft: 50,
-	},
-    textPC: {
         color: "#262626",
-		fontSize: 16,
+        fontSize: 16,
+        marginRight: 90,
+        fontWeight: "bold",
+    },
+    textpay: {
+        color: "#262626",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+    textyen: {
+        color: "#262626",
+        fontSize: 16,
         marginLeft: 130,
     },
+    textuser: {
+        color: "#262626",
+        fontSize: 16,
+        marginLeft: 50,
+    },
+    textPC: {
+        color: "#262626",
+        fontSize: 16,
+        marginLeft: 130,
+    },
+    container: {
+        height: '100%',
+        // backgroundColor: 'red',
+        flex: 1,
+    }
 });
