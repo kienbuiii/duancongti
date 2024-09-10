@@ -40,7 +40,7 @@ const AppNavigation = () => {
         <Stack.Screen name="OderDetailCode" component={OrderDetailScreen} />
         <Stack.Screen name="SupportCustomerScreenCode" component={SupportCustomerScreen} />
         <Stack.Screen name="SupportChanelScreenCode" component={SupportChanelScreen} />
-        <Stack.Screen name="SupportFaqScreenCode" component={FaqScreen} />
+        {/* <Stack.Screen name="SupportFaqScreenCode" component={FaqScreen} /> */}
         <Stack.Screen name="ListOder" component={ListOderScreen} />
         <Stack.Screen name="OderSucess" component={OderSucsess} />
       </Stack.Navigator>
