@@ -15,15 +15,18 @@ import OrderDetailScreen from '../screens/OrderDetailScreen';
 import SupportCustomerScreen from '../screens/SupportCustomerScreen';
 import ListOderScreen from '../screens/ListOderScreen';
 import OderSucsess from '../screens/OderSucsess';
-
 import SupportChanelScreen from '../screens/SupportChanelScreen';
 import FaqScreen from '../screens/FaqScreen';
+
 const Stack = createStackNavigator();
 
 const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="">
+      <Stack.Navigator 
+        initialRouteName="VerificationCode"
+        screenOptions={{ headerShown: false }}  // Ẩn thanh tiêu đề ở đây
+      >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />

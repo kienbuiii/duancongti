@@ -9,8 +9,10 @@ import SupportChanelScreeen from './SupportChanelScreen';
 // Tạo các Tab Component
 function FaqScreenComponent() {
 	return (
+
 		<View style={styles.container}>
-			<Text>Trang chủ</Text>
+			<FaqScreen></FaqScreen>
+			
 		</View>
 	);
 }
@@ -19,8 +21,9 @@ function SupportChanelScreeenComponent() {
 	return (
 
 		<View>
-
+			
 			<SupportChanelScreeen>
+				
 			</SupportChanelScreeen>
 		</View>
 
@@ -33,23 +36,27 @@ const Tab = createMaterialTopTabNavigator();
 
 function MyTabs() {
 	return (
+		<View style={styles.wrapper}>
+		{/* Text nằm trên các tab */}
+		<Text style={styles.headerText}>Hỗ trợ khách hàng</Text>
+		
+		{/* Tab Navigator nằm bên dưới Text */}
 		<Tab.Navigator
-		screenOptions={{
-			tabBarIndicatorStyle: { backgroundColor: '#000' },  // Đổi màu của thanh indicator
-		  }}
+			screenOptions={{
+				tabBarIndicatorStyle: { backgroundColor: '#000' },  // Đổi màu của thanh indicator
+			}}
 		>
 			<Tab.Screen name="Câu hỏi thường gặp" component={FaqScreenComponent} />
-			<Tab.Screen name=" " component={SupportChanelScreeenComponent} />
+			<Tab.Screen name="Khác" component={SupportChanelScreeenComponent} />
 		</Tab.Navigator>
+	</View>
 	);
 }
 
 
 export default function SupportCustomerScreen() {
 	return (
-
-		<MyTabs />
-
+		<MyTabs  />
 	);
 }
 
@@ -61,5 +68,15 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',  // Canh giữa theo trục dọc
 		alignItems: 'center',      // Canh giữa theo trục ngang
 		backgroundColor: '#f5f5f5', // Màu nền cho dễ nhìn
+	},
+	wrapper: {
+		flex: 1,
+		paddingTop:'10%'               // Đảm bảo component chiếm hết không gian
+	},
+	headerText: {
+		fontSize: 20,          // Kích thước chữ
+		fontWeight: 'bold',    // Chữ đậm
+		textAlign: 'center',   // Canh giữa chữ
+		marginVertical: 10,    // Khoảng cách giữa chữ và các thành phần khác
 	},
 });
