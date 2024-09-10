@@ -1,0 +1,19 @@
+{
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "forgotPassword": "Quên mật khẩu?",
+    "companyName": "Tên công ty",
+    "username": "Tên người dùng",
+    "email": "Địa chỉ email",
+    "phoneNumber": "Số điện thoại",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "orderProduct": "Đặt hàng",
+    "notification": "Thông báo",
+    "supportCustomer": "Hỗ trợ khách hàng",
+    "orderList": "Danh sách đơn hàng",
+    "orderDetail": "Chi tiết đơn hàng",
+    "dangNhapDatHang": "Đăng nhập đặt hàng",
+    "alreadyhaveaccount": "Chua co tai khoan?"
+  }
+  

@@ -3,8 +3,10 @@ import { View, Text, TextInput, Button, TouchableOpacity,StyleSheet,Image,Scroll
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './LoginScreen';
+import { useTranslation } from 'react-i18next';
 export default function RegisterScreen() {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const [companyName, setCompanyName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -42,23 +44,23 @@ export default function RegisterScreen() {
   };
   return (
     <ScrollView>
-      <Image source={require('../../assets/Logo.png')} style={styles.logo} />
-      <Text style={styles.textdangnhap}>Đăng ký thành viên</Text>
-      <Text style={styles.textID}>{"Tên công ty"}</Text>
+       <Image source={require('../../assets/Logo.png')} style={styles.logo} />
+      <Text style={styles.textdangnhap}>{t('register')}</Text>
+      <Text style={styles.textID}>{t('companyName')}</Text>
       <TextInput style={styles.box} placeholder="" onChangeText={setCompanyName} value={companyName} />
-      <Text style={styles.textID}>{"Tên người dùng"}</Text>
+      <Text style={styles.textID}>{t('username')}</Text>
       <TextInput style={styles.box} placeholder="" onChangeText={setUsername} value={username} />
-      <Text style={styles.textID}>{"Địa chỉ email người dùng"}</Text>
+      <Text style={styles.textID}>{t('email')}</Text>
       <TextInput style={styles.box} placeholder="" onChangeText={setEmail} value={email} />
-      <Text style={styles.textID}>{"Số điện thoại"}</Text>
+      <Text style={styles.textID}>{t('phoneNumber')}</Text>
       <TextInput style={styles.box} placeholder="" keyboardType="numeric" onChangeText={setPhoneNumber} value={phoneNumber} />
-      <Text style={styles.textID}>{"Mật khẩu"}</Text>
+      <Text style={styles.textID}>{t('password')}</Text>
       <TextInput style={styles.box} placeholder="" secureTextEntry onChangeText={setPassword} value={password} />
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
-        <Text style={styles.text}>{"Đăng ký"}</Text>
+        <Text style={styles.text}>{t('register')}</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.text}>{"Bạn đã có tài khoản? Đăng nhập"}</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.textdktk}>{t('alreadyhaveaccount')}</Text>
       </TouchableOpacity>
     </ScrollView>
   );
