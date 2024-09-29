@@ -1,88 +1,129 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Entypo';
 
 export default function DropDownPickerScreen() {
     const navigation = useNavigation();
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        { label: 'đi chợ 1', value: '1' },
-        { label: 'đi chợ 2', value: '2' },
-        { label: 'đi chợ 3', value: '3' },
-        { label: 'đi chợ 4', value: '4' },
-        { label: 'đi chợ 5', value: '5' },
-        { label: 'đi chợ 6', value: '6' },
-        { label: 'đi chợ 7', value: '7' }
-    ]);
+    const [menuVisible, setMenuVisible] = useState(false);
+
+    const toggleMenu = () => setMenuVisible(!menuVisible);
+
+    const menuOptions = [
+        { title: 'Trang chủ', onPress: () =>navigation.navigate("DropDownPicker") },
+        { title: 'Giỏ hàng', onPress: () => navigation.navigate("ListOder") },
+        { title: 'Lịch sử mua hàng', onPress: () => navigation.navigate("OrderListCode") },
+      ];
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.text}>Khách hàng</Text>
-                <Text style={styles.text}>Tên người dùng ứng dụng</Text>
+                <Text style={styles.headerText}>Khách hàng</Text>
+                <Text style={styles.subHeaderText}>Tên người dùng ứng dụng</Text>
+                <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
+                    <Icon name="menu" size={24} color="#000" />
+                </TouchableOpacity>
+            </View>
+            
+            <View style={styles.content}>
+                {/* Add your content here */}
             </View>
 
-            <DropDownPicker
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                containerStyle={styles.dropdownContainer}
-                style={styles.dropdown}
-            />
-
-
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OderProduct')}>
-                <Text style={styles.buttonText}>Đến tiếp theo</Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('OderProduct')}
+            >
+                <Text style={styles.buttonText}>đến tiếp theo</Text>
             </TouchableOpacity>
-        </View>
+
+            <Modal
+                visible={menuVisible}
+                transparent={true}
+                animationType="fade"
+                onRequestClose={toggleMenu}
+            >
+                <TouchableOpacity style={styles.modalOverlay} onPress={toggleMenu}>
+                    <View style={styles.menuContainer}>
+                        {menuOptions.map((option, index) => (
+                            <TouchableOpacity
+                                key={index}
+                                style={styles.menuItem}
+                                onPress={() => {
+                                    option.onPress();
+                                    toggleMenu();
+                                }}
+                            >
+                                <Text style={styles.menuItemText}>{option.title}</Text>
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                </TouchableOpacity>
+            </Modal>
+        </SafeAreaView>
     );
 }
-
-const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 16,
-        justifyContent: 'flex-start',  // Align items to the top
         backgroundColor: '#fff',
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 16,
-        marginTop: 20,  // Space from the top
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',
     },
-    text: {
-        color: "#555555",
-        fontSize: width * 0.05,  // Responsive font size
-        fontWeight: "bold",
-        textAlign: "center",
+    headerText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#000',
+    },
+    subHeaderText: {
+        fontSize: 14,
+        color: '#666',
+    },
+    menuButton: {
+        padding: 8,
+    },
+    content: {
         flex: 1,
-    },
-    dropdownContainer: {
-        marginBottom: 24,
-    },
-    dropdown: {
-        borderColor: '#ccc',
-        height: 50,
+        // Add content styling as needed
     },
     button: {
-        backgroundColor: "#182EF3",
-        borderRadius: 20,
-        paddingVertical: 16,
-        alignItems: "center",
-        marginHorizontal: width * 0.2, // Responsive horizontal margin
-        marginVertical: 20,  // Space from the dropdown picker
+        backgroundColor: "#4052FF",
+        borderRadius: 25,
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        marginHorizontal: 40,
+        marginBottom: 20,
     },
     buttonText: {
         color: "#FFFFFF",
-        fontSize: width * 0.04,  // Responsive font size
+        fontSize: 16,
         fontWeight: "bold",
+        textAlign: 'center',
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'flex-end',
+    },
+    menuContainer: {
+        backgroundColor: 'white',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        paddingVertical: 20,
+    },
+    menuItem: {
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+    },
+    menuItemText: {
+        fontSize: 16,
+        color: '#333',
     },
 });

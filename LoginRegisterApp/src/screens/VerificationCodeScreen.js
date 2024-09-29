@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Image } from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function VerificationCodeScreen() {
 	// Tạo các tham chiếu cho mỗi TextInput
 	const input1Ref = useRef(null);
@@ -9,7 +9,17 @@ export default function VerificationCodeScreen() {
 	const input3Ref = useRef(null);
 	const input4Ref = useRef(null);
 //
-
+// lấy email
+const retrieveEmail = async () => {
+    try {
+      const savedEmail = await AsyncStorage.getItem('userEmail');
+      if (savedEmail !== null) {
+        setStoredEmail(savedEmail);
+      }
+    } catch (error) {
+      console.error('Failed to retrieve email', error);
+    }
+  };
 	// Hàm xử lý khi nhập hoặc xóa text
 	const handleInputChange = (text, currentInputRef, nextInputRef, previousInputRef) => {
 		if (text.length === 1) {
@@ -28,7 +38,7 @@ export default function VerificationCodeScreen() {
 		<View>
 			<View style={styles.textxm}>
 			<Text style={styles.textxm}>
-						{"Xác minh"}
+						{"Quên mật khẩu"}
 					</Text>
 			</View>
 			<View style={styles.column}>

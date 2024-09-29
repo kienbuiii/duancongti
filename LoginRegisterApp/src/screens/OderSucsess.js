@@ -5,7 +5,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import DropDownPicker from './DropDownPickerScreen';
 const { width, height } = Dimensions.get('window');
 
-export default function LoginScreen() {
+export default function (OderSucsess) {
     const navigation = useNavigation();
    
     return (

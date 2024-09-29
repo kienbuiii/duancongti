@@ -5,6 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import VerificationCodeScreen from '../screens/VerificationCodeScreen';
+import VerificationAccountScreen from '../screens/VerificationAccount';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import ConfirmPassScreen from '../screens/ConfirmPassScreen';
 import DropDownPickerScreen from '../screens/DropDownPickerScreen';
@@ -14,12 +15,14 @@ import OrderListScreen from '../screens/OrderListScreen';
 import OrderDetailScreen from '../screens/OrderDetailScreen';
 import SupportCustomerScreen from '../screens/SupportCustomerScreen';
 import ListOderScreen from '../screens/ListOderScreen';
+import OderSucsess from '../screens/OderSucsess';
 import i18n from '../language/i18n';
-
+import { MenuProvider } from 'react-native-popup-menu'; // Import MenuProvider
 const Stack = createStackNavigator();
 
 const AppNavigation = () => {
   return (
+    <MenuProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen 
@@ -40,6 +43,11 @@ const AppNavigation = () => {
         <Stack.Screen 
           name="VerificationCode" 
           component={VerificationCodeScreen} 
+          options={{ headerShown: false }} // Hide the header
+        />
+        <Stack.Screen 
+          name="VerificationAccount" 
+          component={VerificationAccountScreen} 
           options={{ headerShown: false }} // Hide the header
         />
         <Stack.Screen 
@@ -87,8 +95,14 @@ const AppNavigation = () => {
           component={ListOderScreen} 
           options={{ headerShown: false }} // Hide the header
         />
+         <Stack.Screen 
+          name="OderSucsess" 
+          component={OderSucsess} 
+          options={{ headerShown: false }} // Hide the header
+        />
       </Stack.Navigator>
     </NavigationContainer>
+    </MenuProvider>
   );
 };
 
