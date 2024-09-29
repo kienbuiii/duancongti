@@ -1,0 +1,19 @@
+{
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot Password?",
+    "companyName": "Company Name",
+    "username": "Username",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "orderProduct": "Order Product",
+    "notification": "Notification",
+    "supportCustomer": "Support Customer",
+    "orderList": "Order List",
+    "orderDetail": "Order Detail",
+    "dangNhapDatHang": "Login to Order",
+     "alreadyhaveaccount": "Already have account"
+  }
+  
