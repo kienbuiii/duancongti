@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('window');
 import AsyncStorage from '@react-native-async-storage/async-storage';
+const API_URL= 'https://lacewing-evolving-generally.ngrok-free.app'
 // Giả định API để tìm kiếm sản phẩm
 const searchProducts = async (keyword) => {
   try {
@@ -36,17 +37,33 @@ const searchProducts = async (keyword) => {
 };
 
 // Giả định API để thêm sản phẩm mới
-const addNewProduct = async (nameProduct) => {
-  // Thay thế URL này bằng URL thực của API của bạn
-  const response = await fetch('https://lacewing-evolving-generally.ngrok-free.app/api/product/addProduct', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ nameProduct: nameProduct }),
-  });
-  const data = await response.json();
-  return data;
+export const addNewProduct = async (productName) => {
+  try {
+    const response = await fetch(`${API_URL}/api/product/addProduct`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ nameProduct: productName })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Lỗi khi tạo sản phẩm mới');
+    }
+
+    const data = await response.json();
+    console.log('Phản hồi từ API khi thêm sản phẩm mới:', data);
+    
+    if (!data.product || !data.product._id) {
+      throw new Error('Không nhận được dữ liệu hợp lệ từ server');
+    }
+
+    return data.product;
+  } catch (error) {
+    console.error('Lỗi chi tiết khi thêm sản phẩm mới:', error);
+    throw new Error(`Không thể tạo sản phẩm mới: ${error.message}`);
+  }
 };
 // Giả định API để thêm sản phẩm vào giỏ hàng
 const addToCart = async (productId, quantity, unit) => {
@@ -173,33 +190,39 @@ export default function OderProductScreen() {
     setShowResults(false);
   };
 
-  const handleAddNewProduct = async () => {
-    try {
-      const newProduct = await addNewProduct(productName);
-      console.log('New product added:', newProduct);
-      setProductName(''); // Clear input after adding
-      setSearchResults([]); // Clear search results
-    } catch (error) {
-      console.error('Error adding new product:', error);
-    }
-  };
   const handleAddToCart = async () => {
-    if (!selectedProductId || !quantity || !unit) {
-      alert('Vui lòng chọn sản phẩm và nhập đủ thông tin');
+    if (!productName || !quantity || !unit) {
+      alert('Vui lòng nhập đủ thông tin sản phẩm, số lượng và đơn vị');
       return;
     }
 
     try {
-      await addToCart(selectedProductId, quantity, unit);
+      let productToAdd;
+
+      if (!selectedProductId) {
+        console.log('Đang tạo sản phẩm mới...');
+        const newProduct = await addNewProduct(productName);
+        productToAdd = newProduct._id;
+        console.log('Sản phẩm mới đã được tạo:', newProduct);
+      } else {
+        productToAdd = selectedProductId;
+      }
+
+      console.log('Đang thêm vào giỏ hàng...', { productToAdd, quantity, unit });
+      await addToCart(productToAdd, quantity, unit);
+
+      // Reset form
       setProductName('');
       setQuantity('');
       setUnit(null);
-      setSelectedProductId(null);  // Xóa ID sau khi thêm vào giỏ hàng
+      setSelectedProductId(null);
+      
+      alert('Sản phẩm đã được thêm vào giỏ hàng');
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      console.error('Lỗi chi tiết:', error);
+      alert(`Lỗi: ${error.message}`);
     }
   };
-
 
   const limitedResults = searchResults.slice(0, 4);
   return (
@@ -304,12 +327,6 @@ export default function OderProductScreen() {
           placeholder={""}
           style={styles.inputnx}
         />
-        {productName.length > 0 && searchResults.length === 0 && (
-          <TouchableOpacity onPress={handleAddNewProduct} style={styles.addNewButton}>
-            <Text style={styles.addNewButtonText}>Thêm sản phẩm mới</Text>
-          </TouchableOpacity>
-        )}
-
         <TouchableOpacity onPress={handleAddToCart} style={styles.addToCartButton}>
           <Text style={styles.addToCartButtonText}>Thêm vào giỏ hàng</Text>
         </TouchableOpacity>
