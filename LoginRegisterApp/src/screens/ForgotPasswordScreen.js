@@ -8,7 +8,7 @@ export default function ForgotPasswordScreen() {
 
   const handleSendOTP = async () => {
     try {
-      const response = await fetch('https://lacewing-evolving-generally.ngrok-free.app/api/auth/forgotpassword', {
+      const response = await fetch(API_URLS.FORGOT_PASSWORD, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

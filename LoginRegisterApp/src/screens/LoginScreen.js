@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import API_URLS from '../api';
 export default function LoginScreen() {
   const { t, i18n } = useTranslation();
   const navigation = useNavigation();
@@ -33,7 +34,7 @@ export default function LoginScreen() {
     setLoading(true);
 
     try {
-      const response = await fetch('https://lacewing-evolving-generally.ngrok-free.app/api/auth/login', {
+      const response = await fetch(API_URLS.LOGIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,49 +62,44 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <DropDownPicker
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-        onChangeValue={handleLanguageChange}
-        containerStyle={styles.dropdownContainer}
-        style={styles.dropdown}
-        dropDownStyle={styles.dropdown}
-      />
       <Image source={require('../../assets/Logo.png')} style={styles.logo} />
-      <Text style={styles.textdangnhap}>{t('login')}</Text>
+      <Text style={styles.title}>{t('Đăng nhập đặt hàng')}</Text>
       
-      <Text style={styles.textID}>{t('ID')}</Text>
+      <Text style={styles.label}>{t('ID')}</Text>
       <TextInput
-        style={styles.box}
+        style={styles.input}
         placeholder=""
         value={username}
-        onChangeText={setUsername} // Cập nhật username khi nhập
+        onChangeText={setUsername}
       />
 
-      <Text style={styles.textID}>{t('password')}</Text>
-      <TextInput
-        style={styles.box}
-        placeholder=""
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword} // Cập nhật password khi nhập
-      />
+      <Text style={styles.label}>{t('Mật khẩu')}</Text>
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.passwordInput}
+          placeholder=""
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity style={styles.eyeIcon}>
+          {/* Add eye icon here */}
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-        <Text style={styles.textqmk}>{t('forgotPassword')}</Text>
+        <Text style={styles.forgotPassword}>{t('Bạn quên mật khẩu?')}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
-        <Text style={styles.text}>{loading ? t('Logging in...') : t('login')}</Text>
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>{t('Đăng nhập')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.textdktk}>{t('register')}</Text>
+        <Text style={styles.registerText}>{t('Đã có tài khoản? Đăng ký thành viên')}</Text>
       </TouchableOpacity>
+
+      <Text style={styles.footerText}>https://www.riatec-th.co.jp</Text>
     </View>
   );
 }
@@ -111,72 +107,81 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    padding: 20,
+    alignItems: 'center',
   },
   logo: {
-    width: 285,
-    height: 70,
-    marginTop: 67,
-    marginBottom: 78,
-    marginHorizontal: 67,
+    width: "90%",
+    height: "10%",
     alignSelf: 'center',
+    marginTop: 70,
   },
-  textdangnhap: {
-    color: "#000C7E",
-    fontSize: 28,
-    fontWeight: "bold",
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000',
     marginBottom: 30,
-    marginLeft: 69,
   },
-  box: {
-    height: 44,
-    backgroundColor: "#FFFFFF",
-    borderColor: "#8A8A8A",
-    borderRadius: 12,
-    borderWidth: 1,
-    marginBottom: 20,
-    marginHorizontal: 16,
-    paddingHorizontal: 10,
-  },
-  textID: {
-    color: "#262626",
+  label: {
+    alignSelf: 'flex-start',
     fontSize: 16,
+    color: '#000',
     marginBottom: 5,
-    marginLeft: 17,
   },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#182EF3",
-    borderRadius: 20,
-    paddingVertical: 17,
-    marginBottom: 24,
-    marginHorizontal: 43,
-  },
-  text: {
-    color: "#FFFFFF",
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-  textqmk: {
-    color: "#182EF3",
-    fontSize: 14,
-    fontWeight: "bold",
-    marginBottom: 44,
-    marginLeft: 20,
-  },
-  textdktk: {
-    color: "#000000",
-    fontSize: 14,
-    marginBottom: 268,
-    marginLeft: 69,
-  },
-  dropdownContainer: {
+  input: {
+    width: '100%',
     height: 50,
-    width: '20%',
-    marginLeft: "80%",
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    fontSize: 16,
   },
-  dropdown: {
-    backgroundColor: '#fafafa',
+  passwordContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  passwordInput: {
+    flex: 1,
+    height: 50,
+    paddingHorizontal: 10,
+    fontSize: 16,
+  },
+  eyeIcon: {
+    padding: 10,
+  },
+  forgotPassword: {
+    color: '#0000FF',
+    alignSelf: 'flex-end',
+    marginBottom: 20,
+  },
+  loginButton: {
+    width: '100%',
+    backgroundColor: '#0000FF',
+    paddingVertical: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  registerText: {
+    color: '#0000FF',
+    marginBottom: 20,
+  },
+  footerText: {
+    position: 'absolute',
+    bottom: 20,
+    color: '#888',
   },
 });
