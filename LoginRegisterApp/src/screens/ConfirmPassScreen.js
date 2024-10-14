@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-
+import API_URLS from '../api';
 export default function ConfirmPassScreen() {
   const navigation = useNavigation();
   const route = useRoute();
@@ -14,9 +14,8 @@ export default function ConfirmPassScreen() {
       Alert.alert('Lỗi', 'Không tìm thấy email. Vui lòng thử lại.');
       return;
     }
-
     try {
-      const response = await fetch('https://lacewing-evolving-generally.ngrok-free.app/api/auth/resetpass', {
+      const response = await fetch(API_URLS.RESET_PASSWORD, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

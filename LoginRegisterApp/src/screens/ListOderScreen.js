@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, Alert ,Modal} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Entypo';
 const { width, height } = Dimensions.get('window');
-
+import API_URLS from '../api';
 export default function ListOrderScreen() {
     const navigation = useNavigation();
     const [cartItems, setCartItems] = useState([]);
@@ -24,8 +23,12 @@ export default function ListOrderScreen() {
 
     const fetchCartItems = async () => {
         try {
-            const response = await axios.get('https://lacewing-evolving-generally.ngrok-free.app/api/cart/');
-            setCartItems(response.data);
+            const response = await fetch(API_URLS.SHOW_CART);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setCartItems(data);
         } catch (error) {
             console.error('Lỗi khi lấy dữ liệu giỏ hàng:', error);
             Alert.alert('Lỗi', 'Không thể lấy dữ liệu giỏ hàng');
@@ -38,11 +41,17 @@ export default function ListOrderScreen() {
             return;
         }
         try {
-            const response = await axios.put(`https://lacewing-evolving-generally.ngrok-free.app/api/cart/updateQuantity/${itemId}`, {
-                quantity: newQuantity
+            const response = await fetch(API_URLS.UPDATE_QUANTITY(itemId), {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quantity: newQuantity }),
             });
-            if (response.status === 200) {
+            if (response.ok) {
                 fetchCartItems(); // Làm mới giỏ hàng
+            } else {
+                throw new Error('Cập nhật số lượng thất bại');
             }
         } catch (error) {
             console.error('Lỗi khi cập nhật số lượng:', error);
@@ -66,16 +75,21 @@ export default function ListOrderScreen() {
                                 return;
                             }
     
-                            // Thêm token xác thực nếu cần
                             const token = await AsyncStorage.getItem('token');
-                            const config = {
-                                headers: {
-                                    Authorization: `Bearer ${token}`,
-                                },
-                                data: { userId }
-                            };
     
-                            await axios.delete(`https://lacewing-evolving-generally.ngrok-free.app/api/cart/${itemId}`, config);
+                            const response = await fetch(API_URLS.DELETE_CART_ITEM(itemId), {
+                                method: 'DELETE',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ userId }),
+                            });
+    
+                            if (!response.ok) {
+                                throw new Error('Không thể xóa sản phẩm');
+                            }
+    
                             fetchCartItems();
                         } catch (error) {
                             console.error('Lỗi khi xóa sản phẩm:', error);
@@ -98,11 +112,23 @@ export default function ListOrderScreen() {
 
             console.log('Dữ liệu thanh toán:', { userId, cartItems, tinhTrang: 'Thành Công' });
 
-            const response = await axios.post('https://lacewing-evolving-generally.ngrok-free.app/api/hoaDon/createInvoice', {
-                userId,
-                cartItems,
-                tinhTrang: 'Thành Công',
+            const response = await fetch(API_URLS.CREATE_INVOICE, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId,
+                    cartItems,
+                    tinhTrang: 'Thành Công',
+                }),
             });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
 
             if (response.status === 201) {
                 Alert.alert('Thành công', 'Đơn hàng đã được gửi thành công');
