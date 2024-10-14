@@ -1,19 +1,53 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Modal } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Modal, ScrollView, Dimensions, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Entypo';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function DropDownPickerScreen() {
     const navigation = useNavigation();
     const [menuVisible, setMenuVisible] = useState(false);
+    const [recentOrders, setRecentOrders] = useState([]);
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     const toggleMenu = () => setMenuVisible(!menuVisible);
 
     const menuOptions = [
-        { title: 'Trang chủ', onPress: () =>navigation.navigate("DropDownPicker") },
+        { title: 'Trang chủ', onPress: () => navigation.navigate("DropDownPicker") },
         { title: 'Giỏ hàng', onPress: () => navigation.navigate("ListOder") },
         { title: 'Lịch sử mua hàng', onPress: () => navigation.navigate("OrderListCode") },
-      ];
+    ];
+
+    useEffect(() => {
+        const fetchRecentOrders = async () => {
+            const userId = await AsyncStorage.getItem('userId');
+            try {
+                const response = await axios.get(`https://lacewing-evolving-generally.ngrok-free.app/api/hoaDon/showInvoice/${userId}`);
+                setRecentOrders(response.data.slice(0, 3)); // Get the 3 most recent orders
+            } catch (error) {
+                console.error('Error fetching recent orders:', error);
+                Alert.alert('Error', 'Unable to fetch recent orders');
+            }
+        };
+
+        fetchRecentOrders();
+    }, []);
+
+    const handleOrderDetail = async (orderId) => {
+        if (selectedOrder && selectedOrder._id === orderId) {
+            setSelectedOrder(null);
+        } else {
+            try {
+                const response = await axios.get(`https://lacewing-evolving-generally.ngrok-free.app/api/hoaDon/showCTHoaDon/${orderId}`);
+                const orderDetail = response.data;
+                setSelectedOrder(orderDetail);
+            } catch (error) {
+                console.error('Error fetching order detail:', error);
+                Alert.alert('Error', 'Unable to fetch order detail');
+            }
+        }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -25,9 +59,49 @@ export default function DropDownPickerScreen() {
                 </TouchableOpacity>
             </View>
             
-            <View style={styles.content}>
-                {/* Add your content here */}
-            </View>
+            <ScrollView style={styles.content}>
+                <View style={styles.recentOrdersContainer}>
+                    <Text style={styles.recentOrdersTitle}>Đơn hàng gần đây</Text>
+                    {recentOrders.map((order) => (
+                        <View key={order._id}>
+                            <TouchableOpacity 
+                                style={styles.orderItem}
+                                onPress={() => handleOrderDetail(order._id)}
+                            >
+                                <View style={styles.row0}>
+                                    <Text style={styles.textcod1}>Mã đơn</Text>
+                                    <Text style={styles.textcod}>{order._id}</Text>
+                                </View>
+                                <View style={styles.row0}>
+                                    <Text style={styles.textcod1}>Ngày đặt:</Text>
+                                    <Text style={styles.text3}>
+                                        {new Date(order.createdAt).toLocaleDateString()} {new Date(order.createdAt).toLocaleTimeString()}
+                                    </Text>
+                                </View>
+                                <View style={styles.row0}>
+                                    <Text style={styles.textpay}>Tình trạng:</Text>
+                                    <Text style={styles.textPC}>{order.tinhTrang}</Text>
+                                </View>
+                                <View style={styles.row0}>
+                                    <Text style={styles.textpay}>Tên khách hàng:</Text>
+                                    <Text style={styles.textuser}>{order.username || 'N/A'}</Text>
+                                </View>
+                            </TouchableOpacity>
+                            {selectedOrder && selectedOrder._id === order._id && (
+                                <View style={styles.detailContainer}>
+                                    {selectedOrder.cartItems.map((item) => (
+                                        <View key={item.product._id} style={styles.detailRow}>
+                                            <Text style={styles.detailText}>
+                                                {`Tên: ${item.nameProduct}: Số Lượng: ${item.quantity} ${item.unit}`}
+                                            </Text>
+                                        </View>
+                                    ))}
+                                </View>
+                            )}
+                        </View>
+                    ))}
+                </View>
+            </ScrollView>
 
             <TouchableOpacity
                 style={styles.button}
@@ -63,6 +137,8 @@ export default function DropDownPickerScreen() {
     );
 }
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -91,7 +167,6 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        // Add content styling as needed
     },
     button: {
         backgroundColor: "#4052FF",
@@ -125,5 +200,89 @@ const styles = StyleSheet.create({
     menuItemText: {
         fontSize: 16,
         color: '#333',
+    },
+    recentOrdersContainer: {
+        marginTop: height * 0.02,
+        marginHorizontal: width * 0.04,
+    },
+    recentOrdersTitle: {
+        fontSize: width * 0.05,
+        fontWeight: 'bold',
+        marginBottom: height * 0.02,
+    },
+    orderItem: {
+        backgroundColor: "#F9F9F9",
+        borderColor: "#182EF3",
+        borderRadius: 12,
+        borderWidth: 1,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        marginBottom: 12,
+        shadowColor: "#00000026",
+        shadowOpacity: 0.2,
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowRadius: 4,
+        elevation: 4,
+    },
+    row0: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 14,
+    },
+    textcod: {
+        color: "#0671E0",
+        fontSize: 16,
+        marginLeft: 10,
+    },
+    textcod1: {
+        color: "#262626",
+        fontSize: 16,
+        fontWeight: "bold",
+        width: 120,
+    },
+    textpay: {
+        color: "#262626",
+        fontSize: 16,
+        fontWeight: "bold",
+        width: 120,
+    },
+    text3: {
+        color: "#262626",
+        fontSize: 16,
+    },
+    textuser: {
+        color: "#262626",
+        fontSize: 16,
+    },
+    textPC: {
+        color: "#00FF00",
+        fontSize: 16,
+    },
+    viewDetailsText: {
+        color: '#0671E0',
+        fontSize: 14,
+        textAlign: 'right',
+        marginTop: 8,
+    },
+    detailContainer: {
+        backgroundColor: '#F0F0F0',
+        padding: 10,
+        marginHorizontal: 14,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#182EF3',
+        marginTop: 10,
+    },
+    detailRow: {
+        flexDirection: 'column',
+        marginBottom: 10,
+    },
+    detailText: {
+        color: '#262626',
+        fontSize: 16,
+        marginBottom: 5,
     },
 });

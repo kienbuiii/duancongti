@@ -230,7 +230,7 @@ export default function OderProductScreen() {
     <SafeAreaView style={styles.container}>
      
       <View style={styles.header}>
-        <Text style={styles.headerText}>Tên đơn hàng</Text>
+        <Text style={styles.headerText}>Thêm sản phẩm</Text>
 
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Icon name="menu" size={24} color="#000" />
@@ -262,9 +262,8 @@ export default function OderProductScreen() {
       </Modal>
 
       
-        <View style={styles.fieldContainer}>
-          <Text style={styles.label}>＊Tên sản phẩm</Text>
-        </View>
+    
+          <Text style={styles.text1}>Tên sản phẩm</Text>
         <TextInput
           placeholder="Đầu vào chính của sản phẩm"
           style={styles.input}
@@ -293,34 +292,36 @@ export default function OderProductScreen() {
             )}
           />
         )}
-        <View style={styles.text2}>
+      
           <Text style={styles.text1}>
-            {"＊Số lượng"}
+            {"Số lượng"}
           </Text>
 
-        </View>
-        <View style={styles.text2}>
-          <TextInput
-            placeholder={"Đầu vào số"}
-            style={styles.input2}
-            keyboardType="numeric"
-            value={quantity}  // Liên kết với trạng thái số lượng
-            onChangeText={setQuantity}  // Cập nhật trạng thái khi người dùng nhập số lượng
-          />
-          <DropDownPicker
-            open={open}
-            value={unit}
-            items={items}
-            setOpen={setOpen}
-            setValue={setUnit}
-            setItems={setItems}
-            placeholder="Đơn vị"
-           
-            containerStyle={styles.donVi}
-          />
-        </View>
+       
+        <View style={styles.quantityContainer}>
+  <TextInput
+    placeholder={"Đầu vào số"}
+    style={styles.quantityInput}
+    keyboardType="numeric"
+    value={quantity}
+    onChangeText={setQuantity}
+  />
+  <DropDownPicker
+    open={open}
+    value={unit}
+    items={items}
+    setOpen={setOpen}
+    setValue={setUnit}
+    setItems={setItems}
+    placeholder="Đơn vị"
+    containerStyle={styles.unitPicker}
+    style={styles.unitPickerStyle}
+    dropDownContainerStyle={styles.dropDownContainerStyle}
+  />
+</View>
+
         <Text style={styles.textnx}>
-          {"*Nhận xét"}
+          {"Nhận xét"}
         </Text>
         <TextInput
 
@@ -340,13 +341,6 @@ export default function OderProductScreen() {
 
 
 const styles = StyleSheet.create({
-
-  donVi:{
-    padding:3,
-    left: 20,
-   
-  },
-  dropdown:{ padding:3,},
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -365,18 +359,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
   },
-  subHeaderText: {
-    fontSize: 14,
-    color: '#666',
-  },
   menuButton: {
     padding: 8,
   },
-  content: {
-    flex: 1,
-    // Add content styling as needed
-  },
- 
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -396,13 +381,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
   },
-
-  title: {
-    color: "#000000",
-    fontSize: width * 0.05,
-    fontWeight: "bold",
-    marginBottom: height * 0.02,
-  },
   fieldContainer: {
     marginBottom: height * 0.02,
   },
@@ -410,11 +388,13 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: width * 0.04,
     marginBottom: height * 0.01,
+    
   },
   input: {
     color: "#1D1B20",
     fontSize: width * 0.035,
     marginBottom: height * 0.015,
+    marginHorizontal: width * 0.04,
     borderColor: "#79747E",
     borderRadius: 4,
     borderWidth: 1,
@@ -438,63 +418,41 @@ const styles = StyleSheet.create({
     fontSize: width * 0.04,
     color: '#333',
   },
-  addNewButton: {
-    marginTop: height * 0.02,
-    backgroundColor: '#4CAF50',
-    borderRadius: 4,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  addToCartButton:{
- marginTop: height * 0.02,
-    backgroundColor: '#00FFFF',
-    borderRadius: 4,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  addNewButtonText: {
-    color: '#fff',
-    fontSize: width * 0.04,
-    fontWeight: 'bold',
-  },
- 
-  text1: {
-    color: "#000000",
-    fontSize: width * 0.04,  // Giảm cỡ chữ
-    marginBottom: height * 0.015,
-    marginLeft: width * 0.07,
-    marginTop: height * 0.02,
-  },
-  text2: {
-    color: "#000000",
-    fontSize: width * 0.04,
+  quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-   
-  },
-  input: {
-    color: "#1D1B20",
-    fontSize: width * 0.035,
-    marginBottom: height * 0.015,
+    justifyContent: 'space-between',
     marginHorizontal: width * 0.04,
-    borderColor: "#79747E",
-    borderRadius: 4,
-    borderWidth: 1,
-    paddingVertical: height * 0.02,
-    paddingHorizontal: width * 0.035,
+    marginBottom: height * 0.02,
   },
-  input2: {
+  quantityInput: {
+    flex: 1,
     color: "#1D1B20",
     fontSize: width * 0.035,
-    marginLeft: width * 0.04,
-    width: 160,
     height: 50,
     borderColor: "#79747E",
     borderRadius: 4,
     borderWidth: 1,
-    paddingVertical: height * 0.015,
     paddingHorizontal: width * 0.04,
-    marginLeft: 20
+    marginRight: width * 0.02,
+  },
+  unitPicker: {
+    width: width * 0.3,
+  },
+  unitPickerStyle: {
+    backgroundColor: '#fafafa',
+    borderColor: "#79747E",
+    height: 50,
+  },
+  dropDownContainerStyle: {
+    borderColor: "#79747E",
+  },
+  text1: {
+    color: "#000000",
+    fontSize: width * 0.04,
+    marginBottom: height * 0.015,
+    marginLeft: width * 0.05,
+    marginTop: height * 0.02,
   },
  
   textnx: {
@@ -515,5 +473,19 @@ const styles = StyleSheet.create({
     paddingVertical: height * 0.04,
     paddingHorizontal: width * 0.035,
   },
-
+  addToCartButton: {
+    marginTop: height * 0.02,
+    backgroundColor: '#66CCFF',
+    borderRadius: 4,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '40%',
+    alignSelf: 'center',
+  },
+  addToCartButtonText: {
+    color: '#fff',
+    fontSize: width * 0.04,
+    fontWeight: 'bold',
+  },
 });
