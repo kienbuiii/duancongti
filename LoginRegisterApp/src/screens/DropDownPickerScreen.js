@@ -137,12 +137,12 @@ export default function DropDownPickerScreen() {
     );
 }
 
-const { width, height } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        padding: '4%', // Sử dụng phần trăm thay vì giá trị cố định
     },
     header: {
         flexDirection: 'row',
@@ -202,22 +202,22 @@ const styles = StyleSheet.create({
         color: '#333',
     },
     recentOrdersContainer: {
-        marginTop: height * 0.02,
-        marginHorizontal: width * 0.04,
+        marginTop: screenWidth * 0.02,
+        marginHorizontal: screenWidth * 0.04,
     },
     recentOrdersTitle: {
-        fontSize: width * 0.05,
+        fontSize: screenWidth * 0.05,
         fontWeight: 'bold',
-        marginBottom: height * 0.02,
+        marginBottom: screenWidth * 0.02,
     },
     orderItem: {
         backgroundColor: "#F9F9F9",
         borderColor: "#182EF3",
         borderRadius: 12,
         borderWidth: 1,
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-        marginBottom: 12,
+        paddingVertical: '3%',
+        paddingHorizontal: '4%',
+        marginBottom: '4%',
         shadowColor: "#00000026",
         shadowOpacity: 0.2,
         shadowOffset: {
@@ -230,36 +230,43 @@ const styles = StyleSheet.create({
     row0: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 14,
+        marginBottom: '2%',
     },
     textcod: {
         color: "#0671E0",
-        fontSize: 16,
-        marginLeft: 10,
+        fontSize: 14,
+        flex: 1,
+        flexShrink: 1, // Cho phép co lại nếu cần
     },
     textcod1: {
         color: "#262626",
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "bold",
-        width: 120,
+        width: '30%', // Sử dụng phần trăm thay vì giá trị cố định
     },
     textpay: {
         color: "#262626",
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "bold",
-        width: 120,
+        width: '30%', // Sử dụng phần trăm thay vì giá trị cố định
     },
     text3: {
         color: "#262626",
-        fontSize: 16,
+        fontSize: 14,
+        flex: 1,
+        flexShrink: 1, // Cho phép co lại nếu cần
     },
     textuser: {
         color: "#262626",
-        fontSize: 16,
+        fontSize: 14,
+        flex: 1,
+        flexShrink: 1, // Cho phép co lại nếu cần
     },
     textPC: {
         color: "#00FF00",
-        fontSize: 16,
+        fontSize: 14,
+        flex: 1,
+        flexShrink: 1, // Cho phép co lại nếu cần
     },
     viewDetailsText: {
         color: '#0671E0',
@@ -269,20 +276,29 @@ const styles = StyleSheet.create({
     },
     detailContainer: {
         backgroundColor: '#F0F0F0',
-        padding: 10,
-        marginHorizontal: 14,
-        borderRadius: 12,
+        padding: '3%',
+        marginTop: '2%',
+        marginBottom: '4%',
+        borderRadius: 8,
         borderWidth: 1,
-        borderColor: '#182EF3',
-        marginTop: 10,
+        borderColor: '#D0D0D0',
     },
     detailRow: {
-        flexDirection: 'column',
-        marginBottom: 10,
+        flexDirection: 'row',
+        alignItems: 'flex-start', // Căn lề trái
+        paddingVertical: '1%',
+    },
+    detailLabel: {
+        color: '#262626',
+        fontSize: 14,
+        fontWeight: 'bold',
+        width: '30%', // Đặt chiều rộng cố định cho nhãn
+        marginRight: '2%',
     },
     detailText: {
         color: '#262626',
-        fontSize: 16,
-        marginBottom: 5,
+        fontSize: 14,
+        flex: 1, // Cho phép nội dung mở rộng
+        flexShrink: 1, // Cho phép co lại nếu cần
     },
 });

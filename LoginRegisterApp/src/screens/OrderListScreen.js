@@ -46,7 +46,7 @@ export default function OrderListScreen() {
             setSelectedInvoice(null);
         } else {
             try {
-                console.log('Đang lấy chi tiết hóa đơn cho ID:', invoiceId);
+              
                 
                 // Lấy token từ AsyncStorage
                 const userToken = await AsyncStorage.getItem('userToken');
